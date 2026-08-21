@@ -1,0 +1,22 @@
+version: 2
+
+models:
+  - name: int_fi_lines_classified
+    description: FI lines classified before document-level validation.
+    columns:
+      - name: source_row_id
+        tests: [not_null, unique]
+      - name: row_quality_status
+        tests:
+          - accepted_values:
+              arguments:
+                values: ["PASS", "QUARANTINE"]
+
+  - name: int_fi_document_balance
+    description: Balance validation for candidate FI documents.
+    columns:
+      - name: document_balance_status
+        tests:
+          - accepted_values:
+              arguments:
+                values: ["PASS", "FAIL"]

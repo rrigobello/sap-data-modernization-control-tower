@@ -1,0 +1,5 @@
+dbt-duckdb>=1.11,<2
+duckdb>=1.5,<2
+pytest>=8,<10
+sqlfluff>=3.4,<4
+sqlfluff-templater-dbt>=3.4,<4

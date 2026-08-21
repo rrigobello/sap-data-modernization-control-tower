@@ -1,0 +1,38 @@
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Test Python components
+        run: pytest
+
+      - name: Compile Airflow DAG
+        run: python -m compileall -q airflow/dags
+
+      - name: Run data pipeline
+        run: python scripts/run_pipeline.py --documents 50
+
+      - name: Upload generated control tower
+        uses: actions/upload-artifact@v4
+        with:
+          name: control-tower-site
+          path: site/

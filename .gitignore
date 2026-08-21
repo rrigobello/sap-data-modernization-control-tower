@@ -1,0 +1,13 @@
+.venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.ruff_cache/
+.idea/
+.vscode/
+data/*.duckdb
+data/*.wal
+dbt/logs/
+dbt/target/
+dbt/dbt_packages/
+site/index.html

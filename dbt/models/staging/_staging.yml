@@ -1,0 +1,35 @@
+version: 2
+
+models:
+  - name: stg_bkpf
+    description: SAP-style FI accounting document headers.
+    columns:
+      - name: company_code
+        tests: [not_null]
+      - name: accounting_document
+        tests: [not_null]
+      - name: fiscal_year
+        tests: [not_null]
+
+  - name: stg_bseg
+    description: SAP-style FI line items with duplicate ranking added.
+    columns:
+      - name: source_row_id
+        tests: [not_null, unique]
+      - name: debit_credit_indicator
+        tests:
+          - accepted_values:
+              arguments:
+                values: ["S", "H"]
+
+  - name: stg_cobk
+    description: SAP-style CO document headers.
+    columns:
+      - name: controlling_document
+        tests: [not_null]
+
+  - name: stg_coep
+    description: SAP-style CO actual line items.
+    columns:
+      - name: source_row_id
+        tests: [not_null, unique]
