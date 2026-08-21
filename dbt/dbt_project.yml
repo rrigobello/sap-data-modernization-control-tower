@@ -66,6 +66,7 @@ seeds:
         gjahr: integer
         buzei: varchar
         kstar: varchar
+        wrttp: varchar
     gl_accounts:
       +column_types:
         hkont: varchar

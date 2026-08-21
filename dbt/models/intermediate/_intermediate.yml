@@ -9,7 +9,8 @@ models:
       - name: row_quality_status
         tests:
           - accepted_values:
-              values: ["PASS", "QUARANTINE"]
+              arguments:
+                values: ["PASS", "QUARANTINE"]
 
   - name: int_fi_document_balance
     description: Balance validation for candidate FI documents.
@@ -17,4 +18,5 @@ models:
       - name: document_balance_status
         tests:
           - accepted_values:
-              values: ["PASS", "FAIL"]
+              arguments:
+                values: ["PASS", "FAIL"]

@@ -19,7 +19,8 @@ models:
       - name: debit_credit_indicator
         tests:
           - accepted_values:
-              values: ["S", "H"]
+              arguments:
+                values: ["S", "H"]
 
   - name: stg_cobk
     description: SAP-style CO document headers.

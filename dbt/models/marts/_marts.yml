@@ -29,7 +29,8 @@ models:
       - name: reconciliation_status
         tests:
           - accepted_values:
-              values: ["MATCH", "MISMATCH", "MISSING_FI", "MISSING_CO"]
+              arguments:
+                values: ["MATCH", "MISMATCH", "MISSING_FI", "MISSING_CO"]
 
   - name: rpt_control_tower_summary
     description: Headline operational metrics for the static portfolio dashboard.
