@@ -1,0 +1,8 @@
+sap_control_tower:
+  target: dev
+  outputs:
+    dev:
+      type: duckdb
+      path: "{{ env_var('CONTROL_TOWER_DB_PATH', 'data/control_tower.duckdb') }}"
+      schema: analytics
+      threads: 4

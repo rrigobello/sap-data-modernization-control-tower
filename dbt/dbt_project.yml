@@ -1,0 +1,71 @@
+name: sap_control_tower
+version: 1.0.0
+config-version: 2
+
+profile: sap_control_tower
+
+model-paths: ["models"]
+seed-paths: ["seeds"]
+test-paths: ["tests"]
+macro-paths: ["macros"]
+
+clean-targets:
+  - target
+  - dbt_packages
+  - logs
+
+models:
+  sap_control_tower:
+    staging:
+      +materialized: view
+      +schema: staging
+    intermediate:
+      +materialized: view
+      +schema: intermediate
+    marts:
+      +materialized: table
+      +schema: marts
+
+seeds:
+  sap_control_tower:
+    +schema: raw
+    +quote_columns: false
+    bkpf:
+      +column_types:
+        mandt: varchar
+        bukrs: varchar
+        belnr: varchar
+        gjahr: integer
+        cputm: varchar
+    bseg:
+      +column_types:
+        source_row_id: varchar
+        mandt: varchar
+        bukrs: varchar
+        belnr: varchar
+        gjahr: integer
+        buzei: varchar
+        hkont: varchar
+        kostl: varchar
+        aufnr: varchar
+    cobk:
+      +column_types:
+        mandt: varchar
+        kokrs: varchar
+        bukrs: varchar
+        belnr: varchar
+        gjahr: integer
+        refbn: varchar
+        refgj: integer
+    coep:
+      +column_types:
+        source_row_id: varchar
+        mandt: varchar
+        kokrs: varchar
+        belnr: varchar
+        gjahr: integer
+        buzei: varchar
+        kstar: varchar
+    gl_accounts:
+      +column_types:
+        hkont: varchar

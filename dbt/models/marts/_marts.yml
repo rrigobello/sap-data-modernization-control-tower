@@ -1,0 +1,35 @@
+version: 2
+
+models:
+  - name: fct_fi_line_items
+    description: Trusted and balanced FI line items approved for analytical use.
+    columns:
+      - name: source_row_id
+        tests: [not_null, unique]
+      - name: accounting_document
+        tests: [not_null]
+
+  - name: quarantine_fi_line_items
+    description: Rejected FI source rows with an actionable rejection reason.
+    columns:
+      - name: source_row_id
+        tests: [not_null, unique]
+      - name: quarantine_reason
+        tests: [not_null]
+
+  - name: fct_co_line_items
+    description: CO actual line items connected to their source FI documents.
+    columns:
+      - name: source_row_id
+        tests: [not_null, unique]
+
+  - name: rpt_fi_co_reconciliation
+    description: Document-level reconciliation of FI expenses and CO primary costs.
+    columns:
+      - name: reconciliation_status
+        tests:
+          - accepted_values:
+              values: ["MATCH", "MISMATCH", "MISSING_FI", "MISSING_CO"]
+
+  - name: rpt_control_tower_summary
+    description: Headline operational metrics for the static portfolio dashboard.
